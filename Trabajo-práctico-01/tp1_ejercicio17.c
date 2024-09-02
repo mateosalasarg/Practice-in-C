@@ -24,7 +24,8 @@ int main() {
 	return 0;
 }
 int esCapicua(int n){
-	int acu = 0,dig,aux;
+	int acu,dig,aux,b;
+    acu = b = 0;
 	aux = n;
 	while(n != 0){
 		dig = n % 10;
@@ -32,15 +33,16 @@ int esCapicua(int n){
 		n /= 10 ;
 	}
 	if(aux == acu)
-		return 1;
-	return 0;
+		b = 1;
+	return b;
 }
 int digImpar(int n){
-	while(n != 0){ // 32
+    int b = 1;
+	while(n != 0 && b == 1){
 		if(((n % 10) % 2) == 0){
-			return 0;
+			b = 0;
 		}
 		n/=10;
 	}
-	return 1;
+	return b;
 }

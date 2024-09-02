@@ -10,10 +10,16 @@ espacio en blanco. Considerar que el ingreso se realiza de a un carácter por vez
 */
 
 int esVocal(char);
-
+void difCarac();
 int main() {
-	int cantVocal = 0, cantCons = 0, cantPal = 0, N;
-	char carac, prevCarac = ' ';
+	difCarac();
+	return 0;
+}
+void difCarac(){
+	int cantVocal, cantCons, cantPal, N;
+	cantVocal = cantCons = cantPal = 0;
+	char carac, caracAnterior;
+	caracAnterior = ' '; //para poder contar palabras;
 	
 	printf("Ingrese la cantidad de caracteres que tiene su parrafo: ");
 	scanf("%d", &N);
@@ -24,32 +30,33 @@ int main() {
 		printf("Ingrese el parrafo (caracter por caracter): ");
 		carac = getchar();
 		// Limpiar el buffer de entrada después de cada carácter
-		while(getchar()!='\n');
+		getchar();
+		//while(getchar() != '\n');
 		if (carac != ' ' && carac != '\n') {
 			if (esVocal(carac)) {
 				cantVocal++;
 			} else {
 				cantCons++;
 			}
-			if (prevCarac == ' ' || prevCarac == '\n') {
+			if (caracAnterior == ' ' || caracAnterior == '\n') {
 				cantPal++;
 			}
 		}
-		prevCarac = carac;
+		caracAnterior = carac;
 	}
 	
 	printf("Cantidad de vocales: %d\n", cantVocal);
 	printf("Cantidad de consonantes: %d\n", cantCons);
 	printf("Palabras encontradas: %d\n", cantPal);
-	
-	return 0;
 }
-
 int esVocal(char c) {
+    int b;
 	switch (c) {
 	case 'a': case 'A': case 'e': case 'E': case 'i': case 'I': case 'o': case 'O': case 'u': case 'U':
-		return 1;
+		b = 1;
+		break;
 	default:
-		return 0;
+		b = 0;
 	}
+    return b;
 }
